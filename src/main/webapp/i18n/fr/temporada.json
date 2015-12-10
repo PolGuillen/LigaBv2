@@ -1,0 +1,21 @@
+{
+    "ligabApp": {
+        "temporada" : {
+            "home": {
+                "title": "Temporadas",
+                "createLabel": "Créer un nouveau Temporada",
+                "createOrEditLabel": "Créer ou éditer un Temporada"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Temporada {{ id }} ?"
+            },
+            "detail": {
+                "title": "Temporada"
+            },
+            "fecha_temporada": "Fecha_temporada",
+            "liga": "Liga",
+            "equiposActuales": "EquiposActuales"
+        }
+    }
+}
+

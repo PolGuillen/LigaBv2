@@ -1,0 +1,70 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "entrenador",
+            "otherEntityName": "entrenador",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "nombre",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "team"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "estadio",
+            "otherEntityName": "estadio",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "nombre",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "team"
+        },
+        {
+            "relationshipId": 3,
+            "relationshipName": "jugador",
+            "otherEntityName": "jugador",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "nombre",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "team"
+        },
+
+        {
+            "relationshipId": 4,
+            "relationshipName": "sociosAfiliados",
+            "otherEntityName": "socio",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "nombre",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "equiposAfiliados"
+        },
+        {
+            "relationshipId": 5,
+            "relationshipName": "teporadaActual",
+            "otherEntityName": "temporada",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "nombre",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "equiposActuales"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "nombre",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "localidad",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "fecha_creacion",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20151126191228",
+    "dto": "no",
+    "pagination": "pagination"
+}

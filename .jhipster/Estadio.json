@@ -1,0 +1,23 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "nombre",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "localidad",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "capacidad",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20151126185932",
+    "dto": "no",
+    "pagination": "pagination"
+}
