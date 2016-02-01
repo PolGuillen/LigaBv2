@@ -7,15 +7,15 @@
             "entities": {
                 "main": "Entities",
                 "jugador": "Jugador",
+                "arbitro": "Arbitro",
                 "entrenador": "Entrenador",
                 "estadio": "Estadio",
+                "estadisticas": "Estadisticas",
                 "liga": "Liga",
-                "team": "Team",
-                "arbitro": "Arbitro",
-                "temporada": "Temporada",
                 "partido": "Partido",
                 "socio": "Socio",
-                "estadisticas": "Estadisticas",
+                "team": "Team",
+                "temporada": "Temporada",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

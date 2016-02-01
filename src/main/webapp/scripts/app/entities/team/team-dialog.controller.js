@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('ligabApp').controller('TeamDialogController',
-    ['$scope', '$stateParams', '$modalInstance', '$q', 'entity', 'Team', 'Entrenador', 'Estadio', 'Jugador', 'Socio', 'Temporada',
-        function($scope, $stateParams, $modalInstance, $q, entity, Team, Entrenador, Estadio, Jugador, Socio, Temporada) {
+    ['$scope', '$stateParams', '$modalInstance', '$q', 'entity', 'Team', 'Entrenador', 'Estadio', 'Socio', 'Temporada',
+        function($scope, $stateParams, $modalInstance, $q, entity, Team, Entrenador, Estadio, Socio, Temporada) {
 
         $scope.team = entity;
         $scope.entrenadors = Entrenador.query({filter: 'team-is-null'});
@@ -22,15 +22,6 @@ angular.module('ligabApp').controller('TeamDialogController',
             return Estadio.get({id : $scope.team.estadio.id}).$promise;
         }).then(function(estadio) {
             $scope.estadios.push(estadio);
-        });
-        $scope.jugadors = Jugador.query({filter: 'team-is-null'});
-        $q.all([$scope.team.$promise, $scope.jugadors.$promise]).then(function() {
-            if (!$scope.team.jugador.id) {
-                return $q.reject();
-            }
-            return Jugador.get({id : $scope.team.jugador.id}).$promise;
-        }).then(function(jugador) {
-            $scope.jugadors.push(jugador);
         });
         $scope.socios = Socio.query();
         $scope.temporadas = Temporada.query();

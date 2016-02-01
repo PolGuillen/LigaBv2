@@ -48,6 +48,7 @@
                     <th translate="ligabApp.jugador.asistencias">Asistencias</th>
                     <th translate="ligabApp.jugador.rebotes">Rebotes</th>
                     <th translate="ligabApp.jugador.posicion">Posicion</th>
+                    <th translate="ligabApp.jugador.team">team</th>
                     <th></th>
                 </tr>
             </thead>
@@ -60,6 +61,9 @@
                     <td>{{jugador.asistencias}}</td>
                     <td>{{jugador.rebotes}}</td>
                     <td>{{jugador.posicion}}</td>
+                    <td>
+                        <a ui-sref="team.detail({id:jugador.team.id})">{{jugador.team.nombre}}</a>
+                    </td>
                     <td>
                         <button type="submit"
                                 ui-sref="jugador.detail({id:jugador.id})"

@@ -3,9 +3,8 @@
         "relationshipId": 1,
         "relationshipName": "team",
         "otherEntityName": "team",
-        "relationshipType": "one-to-one",
-        "ownerSide":false,
-        "otherEntityRelationshipName": "jugador"
+        "relationshipType": "many-to-one",
+        "otherEntityField": "nombre"
     }
     ],
     "fields": [

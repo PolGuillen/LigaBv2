@@ -10,8 +10,8 @@ spring:
     datasource:
         dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
         url: jdbc:mysql://localhost:3306/LigaB?useUnicode=true&characterEncoding=utf8
-        databaseName: 
-        serverName: 
+        databaseName:
+        serverName:
         username: root
         password: 123456
         cachePrepStmts: true

@@ -1,6 +1,5 @@
 package com.vasilmarkov.appjhipster.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.vasilmarkov.appjhipster.domain.util.CustomLocalDateSerializer;
@@ -51,8 +50,7 @@ public class Jugador implements Serializable {
     @Column(name = "posicion")
     private String posicion;
 
-    @OneToOne(mappedBy = "jugador")
-    @JsonIgnore
+    @ManyToOne
     private Team team;
 
     public Long getId() {

@@ -18,18 +18,9 @@
             "ownerSide": true,
             "otherEntityRelationshipName": "team"
         },
-        {
-            "relationshipId": 3,
-            "relationshipName": "jugador",
-            "otherEntityName": "jugador",
-            "relationshipType": "one-to-one",
-            "otherEntityField": "nombre",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "team"
-        },
 
         {
-            "relationshipId": 4,
+            "relationshipId": 3,
             "relationshipName": "sociosAfiliados",
             "otherEntityName": "socio",
             "relationshipType": "many-to-many",
@@ -38,7 +29,7 @@
             "otherEntityRelationshipName": "equiposAfiliados"
         },
         {
-            "relationshipId": 5,
+            "relationshipId": 4,
             "relationshipName": "teporadaActual",
             "otherEntityName": "temporada",
             "relationshipType": "many-to-many",
