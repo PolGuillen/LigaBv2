@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+    <p>"Ex2"</p>
+<div ng-app="Jugador" ng-controller="myCtrl1">
+    <div id="left" style="righ:0;">
+<p>Jugador:</p>
+</div> 
+<p>Name: <input type="text" ng-model="name"></p>
+<p>{{name}}</p>
+<p>Fecha de Nacimiento: <input type="text" ng-model="bday"></p>
+<p>{{bday}}</p>
+<p>Canastas: <input type="number" min="0" ng-model="canastas"></p>
+<p>{{canastas}}</p>
+<p>Asistencias: <input type="number" min="0" ng-model="asistencias"></p>
+<p>{{asistencias}}</p>
+<p>Rebotes: <input type="number" min="0" ng-model="rebotes"></p>
+<p>{{rebotes}}</p>
+<p>Posicion: <input type="text" ng-model="posicion"></p>
+<p>{{posicion}}</p>
+
+</div>
+<script>
+var app = angular.module('Jugador', []);
+app.controller('myCtrl1', function($scope) {
+    $scope.name = "";
+    $scope.bday = "01/01/1998";
+    $scope.canastas = 0;
+    $scope.asistencias = 0;
+    $scope.rebotes = 0;
+    $scope.posicion = "Base";
+});
+</script>
+</body>
+</html>

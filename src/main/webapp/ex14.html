@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+
+<p>Click the table headers to change the sorting order:</p>
+
+<div ng-app="myApp" ng-controller="customersCtrl">
+
+    <table border="1" width="100%">
+        <tr>
+            <th ng-click="orderByMe('nombre')">Nombre</th>
+            <th ng-click="orderByMe('canastas')">Canastas </th>
+            <th ng-click="orderByMe('asistencias')">Asistencias </th>
+            <th ng-click="orderByMe('fecha_nacimiento')">Fecha de Nacimiento </th>
+            <th ng-click="orderByMe('team.nombre')">Team </th>
+            <th ng-click="orderByMe('posicion')">Posicion </th>
+            <th ng-click="orderByMe('rebotes')">Rebotes </th>
+        </tr>
+        <tr ng-repeat="x in names | orderBy:myOrderBy">
+            <td ng-if="$odd" style="background-color:red" >
+                {{ x.nombre }}</td>
+            <td ng-if="$even">
+                {{ x.nombre }}</td>
+            <td ng-if="$odd" style="background-color:blue">
+                {{ x.canastas }}</td>
+            <td ng-if="$even">
+                {{ x.canastas }}</td>
+            <td ng-if="$odd" style="background-color:red">
+                {{ x.asistencias }}</td>
+            <td ng-if="$even">
+                {{ x.asistencias }}</td>
+            <td ng-if="$odd" style="background-color:blue">
+                {{ x.fecha_nacimiento }}</td>
+            <td ng-if="$even">
+                {{ x.fecha_nacimiento }}</td>
+            <td ng-if="$odd" style="background-color:red">
+                {{ x.team.nombre }}</td>
+            <td ng-if="$even">
+                {{ x.team.nombre }}</td>
+            <td ng-if="$odd" style="background-color:blue">
+                {{ x.posicion }}</td>
+            <td ng-if="$even">
+                {{ x.posicion }}</td>
+            <td ng-if="$odd" style="background-color:red">
+                {{ x.rebotes }}</td>
+            <td ng-if="$even">
+                {{ x.rebotes }}</td>
+        </tr>
+    </table>
+
+</div>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('customersCtrl', function($scope, $http) {
+        $http.get("api/jugadors")
+            .then(function (response) {$scope.names = response.data;});
+        $scope.orderByMe = function(x) {
+            $scope.myOrderBy = x;
+    }});
+</script>
+
+</body>
+</html>
+
