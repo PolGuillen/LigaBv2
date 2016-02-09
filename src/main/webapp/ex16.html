@@ -11,51 +11,46 @@
         padding: 5px;
     }
 </style>
-<div ng-app="pruebaApp" ng-controller="creacionCtrl">
+<div ng-app="ligabApp" ng-controller="creacionCtrl">
     <div>
-        <form name="formJugador" ng-submit="save()">
-            Nombre: <input type="text" name="nombre" ng-model="jugador.nombre" required/>
-            <span ng-show="formJugador.nombre.$touched && formJugador.nombre.$invalid">El nombre es requerido</span><br/>
+        <form name="formTeam" ng-submit="save()">
+            Nombre: <input type="text" name="nombre" ng-model="team.nombre" required/>
+            <span ng-show="formteam.nombre.$touched && formteam.nombre.$invalid">El nombre es requerido</span><br/>
+            Localidad: <input type="text" name="localidad" ng-model="team.localidad" required/>
+            <span ng-show="formteam.localida.$touched && formteam.localidad.$invalid">La localidad es requerida</span><br/>
+            Fecha de Creacion: <input type="date" name="fecha" ng-model="team.fecha_creacion" required/>
+            <span ng-show="formteam.fecha.$touched && formteam.fecha.$invalid">La localidad es requerida</span><br/>
 
-            Posicion: <input type="text" name="posicion" ng-model="jugador.posicion" required/>
-            <span ng-show="formJugador.posicion.$touched && formJugador.posicion.$invalid">La posicion es requerida</span><br/>
 
-            Asistencias Totales: <input type="number" name="asistenciasTotales" ng-model="jugador.asistenciasTotales" required/>
-            <span ng-show="formJugador.asistenciasTotales.$touched && formJugador.asistenciasTotales.$invalid">Requerido</span><br/>
-
-            Canastas Totales: <input type="number" name="canastasTotales" ng-model="jugador.canastasTotales" required/>
-            <span ng-show="formJugador.canastasTotales.$touched && formJugador.canastasTotales.$invalid">Requerido</span><br/>
-
-            <button type="submit" ng-disabled="formJugador.$invalid || isSaving">
+            <button type="submit" ng-disabled="formTeam.$invalid || isSaving">
                 <span>Save</span>
             </button>
         </form>
     </div>
 </div>
 
-<!-- build:js scripts/vendor.js -->
+
 <!-- bower:js -->
+<script src="bower_components/modernizr/modernizr.js"></script>
 <script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/json3/lib/json3.js"></script>
 <script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/angular-aria/angular-aria.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-<script src="bower_components/angular-cache-buster/angular-cache-buster.js"></script>
-<script src="bower_components/angular-cookies/angular-cookies.js"></script>
-<script src="bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
-<script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
-<script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
 <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 <script src="bower_components/angular-translate/angular-translate.js"></script>
 <script src="bower_components/messageformat/messageformat.js"></script>
 <script src="bower_components/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js"></script>
-<script src="bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
 <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
-<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-<script src="bower_components/json3/lib/json3.js"></script>
-<script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+<script src="bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
+<script src="bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
+<script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+<script src="bower_components/angular-cache-buster/angular-cache-buster.js"></script>
 <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+<script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
@@ -73,8 +68,8 @@
 <script src="scripts/components/form/form.directive.js"></script>
 <script src="scripts/components/form/maxbytes.directive.js"></script>
 <script src="scripts/components/form/minbytes.directive.js"></script>
-<script src="scripts/components/form/uib-pager.config.js"></script>
-<script src="scripts/components/form/uib-pagination.config.js"></script>
+<script src="scripts/components/form/pager.directive.js"></script>
+<script src="scripts/components/form/pagination.directive.js"></script>
 <script src="scripts/components/admin/audits.service.js"></script>
 <script src="scripts/components/admin/logs.service.js"></script>
 <script src="scripts/components/admin/configuration.service.js"></script>
@@ -87,18 +82,17 @@
 <script src="scripts/components/user/user.service.js"></script>
 <script src="scripts/components/util/truncate.filter.js"></script>
 <script src="scripts/components/util/base64.service.js"></script>
-<script src="scripts/components/util/capitalize.filter.js"></script>
 <script src="scripts/components/alert/alert.service.js"></script>
 <script src="scripts/components/alert/alert.directive.js"></script>
 <script src="scripts/components/util/parse-links.service.js"></script>
-<script src="scripts/components/util/date-util.service.js"></script>
-<script src="scripts/components/util/data-util.service.js"></script>
-<script src="scripts/components/util/sort.directive.js"></script>
+<script src="scripts/components/util/dateutil.service.js"></script>
 <script src="scripts/app/account/account.js"></script>
 <script src="scripts/app/account/activate/activate.js"></script>
 <script src="scripts/app/account/activate/activate.controller.js"></script>
 <script src="scripts/app/account/login/login.js"></script>
 <script src="scripts/app/account/login/login.controller.js"></script>
+<script src="scripts/app/account/logout/logout.js"></script>
+<script src="scripts/app/account/logout/logout.controller.js"></script>
 <script src="scripts/app/account/password/password.js"></script>
 <script src="scripts/app/account/password/password.controller.js"></script>
 <script src="scripts/app/account/password/password.directive.js"></script>
@@ -124,11 +118,6 @@
 <script src="scripts/app/admin/metrics/metrics.js"></script>
 <script src="scripts/app/admin/metrics/metrics.controller.js"></script>
 <script src="scripts/app/admin/metrics/metrics.modal.controller.js"></script>
-<script src="scripts/app/admin/user-management/user-management-detail.controller.js"></script>
-<script src="scripts/app/admin/user-management/user-management-dialog.controller.js"></script>
-<script src="scripts/app/admin/user-management/user-management-delete-dialog.controller.js"></script>
-<script src="scripts/app/admin/user-management/user-management.controller.js"></script>
-<script src="scripts/app/admin/user-management/user-management.js"></script>
 <script src="scripts/app/entities/entity.js"></script>
 <script src="scripts/app/error/error.js"></script>
 <script src="scripts/app/main/main.js"></script>
@@ -144,16 +133,77 @@
 <script src="scripts/app/entities/jugador/jugador.js"></script>
 <script src="scripts/app/entities/jugador/jugador.controller.js"></script>
 <script src="scripts/app/entities/jugador/jugador-dialog.controller.js"></script>
-<script src="scripts/app/entities/jugador/jugador-delete-dialog.controller.js"></script>
 <script src="scripts/app/entities/jugador/jugador-detail.controller.js"></script>
 <script src="scripts/components/entities/jugador/jugador.service.js"></script>
+<script src="scripts/app/entities/arbitro/arbitro.js"></script>
+<script src="scripts/app/entities/arbitro/arbitro.controller.js"></script>
+<script src="scripts/app/entities/arbitro/arbitro-dialog.controller.js"></script>
+<script src="scripts/app/entities/arbitro/arbitro-detail.controller.js"></script>
+<script src="scripts/components/entities/arbitro/arbitro.service.js"></script>
+<script src="scripts/app/entities/entrenador/entrenador.js"></script>
+<script src="scripts/app/entities/entrenador/entrenador.controller.js"></script>
+<script src="scripts/app/entities/entrenador/entrenador-dialog.controller.js"></script>
+<script src="scripts/app/entities/entrenador/entrenador-detail.controller.js"></script>
+<script src="scripts/components/entities/entrenador/entrenador.service.js"></script>
+<script src="scripts/app/entities/estadio/estadio.js"></script>
+<script src="scripts/app/entities/estadio/estadio.controller.js"></script>
+<script src="scripts/app/entities/estadio/estadio-dialog.controller.js"></script>
+<script src="scripts/app/entities/estadio/estadio-detail.controller.js"></script>
+<script src="scripts/components/entities/estadio/estadio.service.js"></script>
+<script src="scripts/app/entities/estadisticas/estadisticas.js"></script>
+<script src="scripts/app/entities/estadisticas/estadisticas.controller.js"></script>
+<script src="scripts/app/entities/estadisticas/estadisticas-dialog.controller.js"></script>
+<script src="scripts/app/entities/estadisticas/estadisticas-detail.controller.js"></script>
+<script src="scripts/components/entities/estadisticas/estadisticas.service.js"></script>
+<script src="scripts/app/entities/liga/liga.js"></script>
+<script src="scripts/app/entities/liga/liga.controller.js"></script>
+<script src="scripts/app/entities/liga/liga-dialog.controller.js"></script>
+<script src="scripts/app/entities/liga/liga-detail.controller.js"></script>
+<script src="scripts/components/entities/liga/liga.service.js"></script>
+<script src="scripts/app/entities/partido/partido.js"></script>
+<script src="scripts/app/entities/partido/partido.controller.js"></script>
+<script src="scripts/app/entities/partido/partido-dialog.controller.js"></script>
+<script src="scripts/app/entities/partido/partido-detail.controller.js"></script>
+<script src="scripts/components/entities/partido/partido.service.js"></script>
+<script src="scripts/app/entities/socio/socio.js"></script>
+<script src="scripts/app/entities/socio/socio.controller.js"></script>
+<script src="scripts/app/entities/socio/socio-dialog.controller.js"></script>
+<script src="scripts/app/entities/socio/socio-detail.controller.js"></script>
+<script src="scripts/components/entities/socio/socio.service.js"></script>
+<script src="scripts/app/entities/team/team.js"></script>
+<script src="scripts/app/entities/team/team.controller.js"></script>
+<script src="scripts/app/entities/team/team-dialog.controller.js"></script>
+<script src="scripts/app/entities/team/team-detail.controller.js"></script>
+<script src="scripts/components/entities/team/team.service.js"></script>
+<script src="scripts/app/entities/temporada/temporada.js"></script>
+<script src="scripts/app/entities/temporada/temporada.controller.js"></script>
+<script src="scripts/app/entities/temporada/temporada-dialog.controller.js"></script>
+<script src="scripts/app/entities/temporada/temporada-detail.controller.js"></script>
+<script src="scripts/components/entities/temporada/temporada.service.js"></script>
+<!-- endbuild -->
 
 <script>
-    var app = angular.module('myApp', ['ngResource']);
 
-    app.factory("Post", function($resource) {
-        return $resource("/api/posts/:id");
+    var app = angular.module('ligabApp');
+    app.controller('creacionCtrl', function($scope, Team) {
+        $scope.team;
+        $scope.save = function () {
+            $scope.isSaving = true;
+            Team.save($scope.team, onSaveSuccess, onSaveError);
+        };
+        var onSaveSuccess = function (result) {
+            $scope.isSaving = false;
+        };
+        var onSaveError = function (result) {
+            $scope.isSaving = false;
+        };
     });
+    app.factory("Team",function($resource){
+        return $resource('api/teams/:id', {}, {
+        });
+    });
+
 </script>
+
 </body>
 </html>

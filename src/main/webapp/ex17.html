@@ -1,56 +1,56 @@
 <!DOCTYPE html>
-<html>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
 <style>
-    input.ng-pristine {
-        background-color:transparent;
-    }
-    input.ng-dirty {
-        background-color:green;
+    .well {
+        box-shadow: 0px 11px 15px -10px rgba(0,0,0,.52);
     }
 </style>
+<div ng-app="ligabApp" ng-controller="creacionCtrl" ng-init="getAllJugadores()">
+    <br/>
+    <div class="container" ng-cloak>
+        <div class="well">
+            Jugadores: <select ng-model="selected" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required">
+            <option value=""></option>
+            <option ng-repeat="jugador in allJugadores" value="{{jugador.id}}">{{jugador.nombre}}</option>
+        </select>
 
-
-<body>
-
-<p>Try leaving the first input field blank:</p>
-<div ng-app="ligabApp" ng-controller="creacionCtrl">
-    <div>
-        <form name="myForm" ng-submit="save()">
-            <p>Nombre:
-                <input type="text" name="name" ng-model="jugador.nombre" required>
-                <span ng-show="myForm.name.$touched && myForm.name.$invalid">El nombre es obligatorio.</span>
-
-            </p>
-            <p>Canastas:
-                <input type="number" min="0" name="canastas" ng-model="jugador.canastas" required>
-                <span ng-show="myForm.canastas.$touched && myForm.canastas.$invalid">El minimo de canastas es 0.</span>
-            </p>
-            <p></p>Asistencias:
-            <input type="number" min="0" name="asistencias" ng-model="jugador.asistencias" required>
-            <span ng-show="myForm.asistencias.$touched && myForm.asistencias.$invalid">El minimo de canastas es 0.</span>
-            </p>
-            <p>Fecha de Nacimiento:
-                <input type="date" name="myBirthDate" ng-model="jugador.fecha_nacimiento" required>
-                <span ng-show="myForm.birthDate.$touched && myForm.birthDate.$invalid" >La fecha de nacimiento es obligatoria.</span>
-            </p>
-            <p>Posicion:
-                <input type="text" name="myPosicion" ng-model="jugador.posicion" required>
-                <span ng-show="myForm.posicion.$touched && myForm.posicion.$invalid">La posicion es obligatoria.</span>
-            </p>
-            <p>Rebotes:
-                <input type="number" min="0" name="rebotes" ng-model="jugador.rebotes" required>
-                <span ng-show="myForm.rebotes.$touched && myForm.rebotes.$invalid">El minimo de rebotes es 0.</span>
-            </p>
-
-            <button type="submit" ng-disabled="formTeam.$invalid || isSaving">
-                <span>Save</span>
+            <p></p>
+            <button class="btn btn-primary" ng-click="cargarJugador(selected); getAllJugadores()">
+                <span>Seleccionar Jugador</span>
             </button>
-        </form>
+            <br/><br/>
+
+            <form name="formJugador" ng-submit="update()">
+                Id: <input ng-model="jugadorSel.id" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" disabled/>
+
+                Nombre: <input type="text" name="nombre" ng-model="jugadorSel.nombre" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required/>
+
+                Posicion: <input type="text" name="posicion" ng-model="jugadorSel.posicion" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required/>
+
+                CanastasTotales: <input type="number" name="canastas" ng-model="jugadorSel.canastas" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required/>
+
+                AsistenciasTotales: <input type="number" name="asistencias" ng-model="jugadorSel.asistencias" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required/>
+
+                RebotesTotales: <input type="number" name="rebotes" ng-model="jugadorSel.rebotes" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required/>
+
+                Equipo: <select class="form-control" id="field_equipo" name="team" ng-model="jugadorSel.team" ng-options="team as team.nombre for team in team track by team.id">
+                <option value=""></option>
+            </select>
+
+                <br/>
+                <button type="submit" ng-disabled="formJugador.$invalid || isSaving" class="btn btn-primary">
+                    <span>Save</span>
+                </button>
+            </form>
+        </div>
     </div>
 </div>
 
-<!-- build:js scripts/vendor.js -->
 <!-- bower:js -->
 <script src="bower_components/modernizr/modernizr.js"></script>
 <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -203,28 +203,46 @@
 <script src="scripts/components/entities/temporada/temporada.service.js"></script>
 <!-- endbuild -->
 
-
 <script>
     var app = angular.module('ligabApp');
-    app.controller('creacionCtrl', function($scope, Jugador) {
-        $scope.jugador;
-        $scope.save = function () {
-            $scope.isSaving = true;
-            Jugador.save($scope.jugador, onSaveSuccess, onSaveError);
+    app.controller('creacionCtrl', function($scope, Jugador,Team) {
+        $scope.allJugadores;
+        $scope.jugadorSel;
+        $scope.team = Team.query();
+        $scope.getAllJugadores = function(){
+            $scope.allJugadores = Jugador.query();
         };
-        var onSaveSuccess = function (result) {
-            $scope.isSaving = false;
+        $scope.cargarJugador = function(id){
+            Jugador.get({id: id},function(result){
+                $scope.jugadorSel = result;
+            });
         };
-        var onSaveError = function (result) {
-            $scope.isSaving = false;
+        $scope.update = function(){
+            Jugador.update($scope.jugadorSel, updateOK);
         };
+        var updateOK = function(){
+            $scope.getAllJugadores();
+        }
     });
     app.factory("Jugador",function($resource){
         return $resource('api/jugadors/:id', {}, {
+            'query': { method: 'GET', isArray: true},
+            'get': {
+                method: 'GET',
+                transformResponse: function (data) {
+                    data = angular.fromJson(data);
+                    return data;
+                }
+            },
+            'update': {
+                method: 'PUT',
+                transformRequest: function (data) {
+                    return angular.toJson(data);
+                }
+            }
         });
     });
 </script>
-
 
 </body>
 </html>
