@@ -4,6 +4,7 @@ angular.module('ligabApp')
     .factory('Jugador', function ($resource, DateUtils) {
         return $resource('api/jugadors/:id', {}, {
             'query': { method: 'GET', isArray: true},
+            'topPlayers':{method: 'GET',isArray:true,url : '/api/bp-by-canastas/:canastas'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {

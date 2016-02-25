@@ -100,6 +100,25 @@ public class JugadorResource {
     }
 
     /**
+    * GET  /tp-by-canastas -> get all top players from a canstas filter.
+    */
+
+
+
+    @RequestMapping(value = "/bp-by-canastas/{canastas}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<List<Jugador>> get(@PathVariable int canastas) {
+        log.debug("REST request to get Jugador : {}", canastas);
+        return Optional.ofNullable(jugadorRepository.findAllByCanastasGreaterThanEqualOrderByCanastasDesc(canastas))
+            .map(jugador -> new ResponseEntity<>(
+                jugador,
+                HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    /**
      * DELETE  /jugadors/:id -> delete the "id" jugador.
      */
     @RequestMapping(value = "/jugadors/{id}",

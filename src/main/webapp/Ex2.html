@@ -6,7 +6,7 @@
 <div ng-app="Jugador" ng-controller="myCtrl1">
     <div id="left" style="righ:0;">
 <p>Jugador:</p>
-</div> 
+</div>
 <p>Name: <input type="text" ng-model="name"></p>
 <p>{{name}}</p>
 <p>Fecha de Nacimiento: <input type="text" ng-model="bday"></p>
@@ -24,7 +24,7 @@
 <script>
 var app = angular.module('Jugador', []);
 app.controller('myCtrl1', function($scope) {
-    $scope.name = "";
+   $scope.name = "";
     $scope.bday = "01/01/1998";
     $scope.canastas = 0;
     $scope.asistencias = 0;

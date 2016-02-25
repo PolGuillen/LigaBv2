@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+
+<p>Click the table headers to change the sorting order:</p>
+
+<div ng-app="myApp" ng-controller="topJugadorsCtrl">
+
+
+    <form name="myForm" ng-submit="save()">
+
+        <p>Canastas:
+            <input type="number" min="0" name="canastas" ng-model="jugador.canastas" required>
+            <span ng-show="myForm.canastas.$touched && myForm.canastas.$invalid">El minimo de canastas es 0.</span>
+        </p>
+
+
+        <button type="submit" ng-disabled="formTeam.$invalid || isSaving">
+            <span>Consultar</span>
+        </button>
+    </form>
+
+    <p>Name : {{ Jugador.nombre }}</p>
+
+
+
+</div>
+
+
+
+</body>
+</html>
+
