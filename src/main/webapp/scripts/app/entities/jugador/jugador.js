@@ -21,6 +21,9 @@ angular.module('ligabApp')
                         $translatePartialLoader.addPart('jugador');
                         $translatePartialLoader.addPart('global');
                         return $translate.refresh();
+                    }],
+                    entityT: ['$stateParams', 'Team', function($stateParams, Team) {
+                        return Team.query();
                     }]
                 }
             })
@@ -92,5 +95,18 @@ angular.module('ligabApp')
                         $state.go('^');
                     })
                 }]
-            });
+            })
+
+        .state('byCanastas', {
+            url: '/byCanastas',
+            data: {
+                pageTitle: 'By cannastas '
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'ej14-extra.html',
+                    controller: 'jugadorCtrl'
+                }
+            }
+        });
     });

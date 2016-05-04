@@ -9,7 +9,27 @@
                     <span class="glyphicon glyphicon-flash"></span> <span translate="ligabApp.jugador.home.createLabel">Create a new Jugador</span>
                 </button>
             </div>
-        </div>
+            <div class="col-md-5">
+
+                <button class="btn btn-primary" ng-click="filtrarPor(50);">By Canastas 50 >= </button>
+                <button class="btn btn-primary" ng-click="cargarTeam(selected);">
+                    <span>By Canastas 50>= And Team</span>
+                </button>
+                <br/><br/>
+                Equipos:
+                <select ng-model="selected" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required">
+                    <option value="">Elige Equipo </option>
+                    <option ng-repeat="team in allTeams" value="{{team.id}}">{{team.nombre}}</option>
+                </select>
+
+                <p></p>
+
+            </div>
+
+
+
+
+            </div>
     </div>
 
     <div class="modal fade" id="deleteJugadorConfirmation">
@@ -53,7 +73,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="jugador in jugadors">
+                <tr ng-repeat="jugador in jugadors ">
                     <td><a ui-sref="jugador.detail({id:jugador.id})">{{jugador.id}}</a></td>
                     <td>{{jugador.nombre}}</td>
                     <td>{{jugador.fecha_nacimiento}}</td>

@@ -11,5 +11,6 @@ import java.util.List;
 public interface JugadorRepository extends JpaRepository<Jugador,Long> {
 
    List<Jugador> findAllByCanastasGreaterThanEqualOrderByCanastasDesc(Integer canastas);
+    List<Jugador> findAllByCanastasGreaterThanEqualAndTeamIdOrderByCanastasDesc(Integer canastas,Long id);
 
 }
